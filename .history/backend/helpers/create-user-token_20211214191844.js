@@ -1,2 +1,0 @@
-const jws = require('jsonwebtoken')
-
