@@ -13,7 +13,7 @@ import getUserByToken from "../helpers/get-user-by-token.js"
 
 export default class UserController{
   static async register(req, res){
-        
+    
     const {name, email, phone, password, confirmpassword} = req.body
 
     if(!name) {

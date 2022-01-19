@@ -282,11 +282,11 @@ export default class PetController{
   static async concludeAdoption(req, res) {
     const id = req.params.id
 
-    const pet = await Pet.findOne({ _id: id })
+    const pet = await findOne({ _id: id })
 
     pet.available = false
 
-    await Pet.findByIdAndUpdate(pet._id, pet)
+    await findByIdAndUpdate(pet._id, pet)
 
     res.status(200).json({
       pet: pet,

@@ -13,7 +13,7 @@ import getUserByToken from "../helpers/get-user-by-token.js"
 
 export default class UserController{
   static async register(req, res){
-        
+    
     const {name, email, phone, password, confirmpassword} = req.body
 
     if(!name) {
@@ -139,8 +139,13 @@ export default class UserController{
   static async editUser(req, res) {
     const token = getToken(req)
 
+    //console.log(token);
+
     const user = await getUserByToken(token)
 
+    // console.log(user);
+    // console.log(req.body)
+    // console.log(req.file.filename)
 
     const name = req.body.name
     const email = req.body.email
@@ -168,7 +173,7 @@ export default class UserController{
     }
 
     // check if user exists
-    const userExists = await User.findOne({ email: email })
+    const userExists = await findOne({ email: email })
 
     if (user.email !== email && userExists) {
       res.status(422).json({ message: 'Por favor, utilize outro e-mail!' })
@@ -189,27 +194,24 @@ export default class UserController{
 
     user.phone = phone
 
-    if (!!password && !!confirmpassword) {
+    // check if password match
+    if (password !== confirmpassword) {
+      res.status(422).json({ message: 'As senhas não conferem.' })
 
-      // check if password match
-      if (password !== confirmpassword) {
-        res.status(422).json({ message: 'As senhas não conferem.' })
+      // change password
+    } else if (password === confirmpassword && password !== null) {
+      // creating password
+      const salt = await genSalt(12)
+      const reqPassword = req.body.password
 
-        // change password
-      } else if (password === confirmpassword && !!password) {
-        // creating password
-        const salt = await genSalt(12)
-        const reqPassword = req.body.password
+      const passwordHash = await hash(reqPassword, salt)
 
-        const passwordHash = await hash(reqPassword, salt)
-
-        user.password = passwordHash
-      }
+      user.password = passwordHash
     }
 
     try {
       // returns updated data
-      const updatedUser = await User.findOneAndUpdate(
+      const updatedUser = await findOneAndUpdate(
         { _id: user._id },
         { $set: user },
         { new: true },

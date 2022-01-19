@@ -11,6 +11,6 @@ router.post('/register', register)
 router.post('/login', login)
 router.get('/checkuser', checkUser)
 router.get('/:id', getUserById)
-router.patch('/edit/:id', [checkToken, imageUpload.single("image")], editUser)
+router.patch('/edit/:id', checkToken, imageUpload.single("image"), editUser)
 
 export default router

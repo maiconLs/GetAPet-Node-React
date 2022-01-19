@@ -153,7 +153,7 @@ export default class PetController{
       return
     }
 
-    await Pet.findByIdAndRemove(id)
+    await findByIdAndRemove(id)
 
     res.status(200).json({ message: 'Pet removido com sucesso!' })
 
@@ -171,7 +171,7 @@ export default class PetController{
 
     const updateData = {}
 
-    const pet = await Pet.findOne({ _id: id })
+    const pet = await findOne({ _id: id })
 
     if (!pet) {
       res.status(404).json({ message: 'Pet não encontrado!' })
@@ -233,7 +233,7 @@ export default class PetController{
 
     updateData.description = description
 
-    await Pet.findByIdAndUpdate(id, updateData)
+    await findByIdAndUpdate(id, updateData)
 
     res.status(200).json({ pet: pet, message: 'Pet atualizado com sucesso!' })
   }
@@ -241,7 +241,7 @@ export default class PetController{
   static async schedule(req, res) {
     const id = req.params.id
 
-    const pet = await Pet.findOne({ _id: id })
+    const pet = await findOne({ _id: id })
 
     const token = getToken(req)
     const user = await getUserByToken(token)
@@ -272,7 +272,7 @@ export default class PetController{
 
     console.log(pet)
 
-    await Pet.findByIdAndUpdate(pet._id, pet)
+    await findByIdAndUpdate(pet._id, pet)
 
     res.status(200).json({
       message: `A visita foi agendada com sucesso, entre em contato com ${pet.user.name} no telefone: ${pet.user.phone}`,
@@ -282,11 +282,11 @@ export default class PetController{
   static async concludeAdoption(req, res) {
     const id = req.params.id
 
-    const pet = await Pet.findOne({ _id: id })
+    const pet = await findOne({ _id: id })
 
     pet.available = false
 
-    await Pet.findByIdAndUpdate(pet._id, pet)
+    await findByIdAndUpdate(pet._id, pet)
 
     res.status(200).json({
       pet: pet,

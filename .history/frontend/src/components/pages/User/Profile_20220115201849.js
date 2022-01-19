@@ -37,7 +37,6 @@ function Profile() {
   function onFileChange(e) {
     setPreview(e.target.files[0])
     setUser({ ...user, [e.target.name]: e.target.files[0] })
-    console.log(preview)
   }
 
   const handleSubmit = async (e) => {
@@ -61,7 +60,7 @@ function Profile() {
       })
       .then((response) => {
         console.log(response.data)
-        toast.success(JSON.stringify(response.data.message) )
+    
         return response.data
       })
        .catch ((err) => {
@@ -82,7 +81,7 @@ function Profile() {
             src={
               preview
                 ? URL.createObjectURL(preview)
-                : `${process.env.REACT_APP_API}images/users/${user.image}`
+                : `${process.env.REACT_APP_API}backend/images/users/${user.image}`
             }
             alt={user.name}
           />

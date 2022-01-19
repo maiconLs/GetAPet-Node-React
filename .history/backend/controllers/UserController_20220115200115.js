@@ -13,7 +13,7 @@ import getUserByToken from "../helpers/get-user-by-token.js"
 
 export default class UserController{
   static async register(req, res){
-        
+    
     const {name, email, phone, password, confirmpassword} = req.body
 
     if(!name) {
@@ -189,22 +189,19 @@ export default class UserController{
 
     user.phone = phone
 
-    if (!!password && !!confirmpassword) {
+    // check if password match
+    if (password !== confirmpassword) {
+      res.status(422).json({ message: 'As senhas não conferem.' })
 
-      // check if password match
-      if (password !== confirmpassword) {
-        res.status(422).json({ message: 'As senhas não conferem.' })
+      // change password
+    } else if (password === confirmpassword && !!password !== null) {
+      // creating password
+      const salt = await genSalt(12)
+      const reqPassword = req.body.password
 
-        // change password
-      } else if (password === confirmpassword && !!password) {
-        // creating password
-        const salt = await genSalt(12)
-        const reqPassword = req.body.password
+      const passwordHash = await hash(reqPassword, salt)
 
-        const passwordHash = await hash(reqPassword, salt)
-
-        user.password = passwordHash
-      }
+      user.password = passwordHash
     }
 
     try {

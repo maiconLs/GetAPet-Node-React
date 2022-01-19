@@ -286,7 +286,7 @@ export default class PetController{
 
     pet.available = false
 
-    await Pet.findByIdAndUpdate(pet._id, pet)
+    await findByIdAndUpdate(pet._id, pet)
 
     res.status(200).json({
       pet: pet,

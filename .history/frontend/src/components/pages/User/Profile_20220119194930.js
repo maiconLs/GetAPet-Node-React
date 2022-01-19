@@ -37,7 +37,6 @@ function Profile() {
   function onFileChange(e) {
     setPreview(e.target.files[0])
     setUser({ ...user, [e.target.name]: e.target.files[0] })
-    console.log(preview)
   }
 
   const handleSubmit = async (e) => {
