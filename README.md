@@ -6,4 +6,7 @@
 
 - ``JavaScript``
 - ``NodeJs``
+- ``Express``
 - ``ReactJs``
+- ``MongoDB``
+- ``Mongoose``
