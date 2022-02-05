@@ -25,7 +25,6 @@
   border-radius: 8px;
   background-color: #70cf36;
   color: #fff;
-  transition: 0.5s;
   border: none;
   max-width: 200px;
   min-height: 2.5rem;
@@ -36,5 +35,5 @@
 }
 
 .pet_details_container button:hover {
-  background-color: #63b430;
+  background-color: #1c8a42;
 }

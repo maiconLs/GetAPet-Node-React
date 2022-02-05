@@ -41,8 +41,8 @@
 
 .pet_card a {
   border-radius: 8px;
-  color: #FFF;
-  background-color: #70cf36;
+  color: #16479d;
+  background-color: #ffd400;
   border: none;
   min-width: 100px;
   padding: 15px;
@@ -54,8 +54,7 @@
 }
 
 .pet_card a:hover {
-  background-color: #63b430;
-  transition: 0.4s;
+  background-color: #e7c30d;
   color: #fff;
 }
 

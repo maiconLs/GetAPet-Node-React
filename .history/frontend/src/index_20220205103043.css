@@ -5,7 +5,9 @@
   box-sizing: border-box;
 }
 
-
+body{
+  background-color: aliceblue;
+}
 
 h1 {
   color: #16479d;

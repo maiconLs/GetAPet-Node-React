@@ -5,7 +5,7 @@ import getUserByToken from "../helpers/get-user-by-token.js"
 import mongoose from 'mongoose'
 const ObjectId = mongoose.Types.ObjectId
 
-
+  
 export default class PetController{
   static async create(req, res){
     const name = req.body.name
@@ -15,6 +15,7 @@ export default class PetController{
     const color = req.body.color
     const images = req.files
     const available = true
+
 
 
     // validations
@@ -38,11 +39,11 @@ export default class PetController{
       return
     }
 
-    if (images.length === 0) {
+    if (images.lenght === 0) {
       res.status(422).json({ message: 'A imagem é obrigatória!' })
       return
     }
-    
+
     const token = getToken(req)
     const user = await getUserByToken(token)
 

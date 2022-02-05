@@ -17,6 +17,7 @@ export default class PetController{
     const available = true
 
 
+
     // validations
     if (!name) {
       res.status(422).json({ message: 'O nome é obrigatório!' })
@@ -38,7 +39,7 @@ export default class PetController{
       return
     }
 
-    if (images.length === 0) {
+    if (images.lenght === 0) {
       res.status(422).json({ message: 'A imagem é obrigatória!' })
       return
     }

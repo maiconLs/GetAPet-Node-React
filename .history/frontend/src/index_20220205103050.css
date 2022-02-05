@@ -5,7 +5,9 @@
   box-sizing: border-box;
 }
 
-
+body{
+  background-color: rgb(229, 230, 231);
+}
 
 h1 {
   color: #16479d;

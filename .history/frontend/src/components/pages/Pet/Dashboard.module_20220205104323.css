@@ -18,12 +18,12 @@
   transition: 0.5s;
   padding: 0.5em 0.8em;
   border-radius: 5px;
-  border: 2px solid #70cf36;
+  border: 2px solid #16479d;
 }
 
 .petslist_header a:hover {
-  background-color: #63b430;
-  color: #FFF;
+  background-color: transparent;
+  color: #16479d;
 }
 
 .petslist_container {
