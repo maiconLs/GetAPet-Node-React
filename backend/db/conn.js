@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const { connect } = mongoose;
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 async function main() {
